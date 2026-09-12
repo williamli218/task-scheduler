@@ -2,7 +2,7 @@ CREATE TABLE "User" (
     id SERIAL PRIMARY KEY,
     email TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT NOW()
+    created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 CREATE TABLE "Category" (
@@ -16,9 +16,9 @@ CREATE TABLE "Task" (
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
     description TEXT,
-    due_date TIMESTAMP,
+    due_date TIMESTAMPTZ,
     completed BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP DEFAULT NOW(),
+    created_at TIMESTAMPTZ DEFAULT NOW(),
     user_id INTEGER NOT NULL REFERENCES "User"(id),
     category_id INTEGER REFERENCES "Category"(id)
 );
@@ -27,11 +27,11 @@ CREATE TABLE "Event" (
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
     description TEXT,
-    start_time TIMESTAMP NOT NULL,
-    end_time TIMESTAMP NOT NULL,
+    start_time TIMESTAMPTZ NOT NULL,
+    end_time TIMESTAMPTZ NOT NULL,
     location TEXT,
     recurring BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP DEFAULT NOW(),
+    created_at TIMESTAMPTZ DEFAULT NOW(),
     user_id INTEGER NOT NULL REFERENCES "User"(id),
     category_id INTEGER REFERENCES "Category"(id)
 );
